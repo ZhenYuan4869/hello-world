@@ -18,7 +18,7 @@ class Solution:
         c = val // 10
         ret = ListNode(val % 10 ) 
         
-        if (l1.next != None or l2.next != None or c != 0):
+        if (l1.next != None or l2.next != None or c != 0): #边界条件，C是进位数字，以及两个数列是不是结束了的判定
             if l1.next == None:
                 l1.next = ListNode(0)
             if l2.next == None:
