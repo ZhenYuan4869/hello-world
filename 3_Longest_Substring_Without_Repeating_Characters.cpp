@@ -53,5 +53,4 @@ public:
 int main(){
     Solution problem;
     cout<<problem.lengthOfLongestSubstring(" ")<<endl;
-
 }
