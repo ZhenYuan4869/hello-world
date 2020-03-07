@@ -7,6 +7,7 @@
 //     return 0;
 // }
 #include <string> 
+using namespace std;
 class parent
 {
     public:
@@ -49,5 +50,14 @@ int main()
     //相当于根据指针的实际类型来调用对应类型的函数
     p->virtualTest();
     //即将被重写的函数添加virtual是个应该遵守的编码习惯
+
+    double x=2.5;
+    double y = 4.7;
+    int a = 7;
+    char b = 10100111;
+    int t;
+    t = (2+x)^(~3);
+    cout<<b<<endl;
+    cout<<x+a%3*(int)(x+y)%2/4<<endl;
     return 0;
 }

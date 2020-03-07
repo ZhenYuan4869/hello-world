@@ -28,10 +28,3 @@ class Solution:
                     lines[(dx / delta, dy / delta)] += 1
             res = max(res, (max(lines.values()) if lines else 0) + duplicated) # 最大的res和最新的作比较
         return res
-
-                
-                
-
-                
-                
-
