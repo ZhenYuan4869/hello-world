@@ -13,8 +13,13 @@
 using namespace std;
 class Solution {
 public:
-    string longestPalindrome(string s) {
+    string longestPalindrome(string s) 
+    {
         int len = s.size();
+        for(int i = 0;i<len;i++)
+        {
+            for(int j = 0;j<)
+        }
 
     }
 };
