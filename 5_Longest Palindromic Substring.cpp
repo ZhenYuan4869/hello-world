@@ -26,32 +26,36 @@ public:
         }
         return 1;
     }
+    string longest_palind_including_first(string s)
+    {
+        int len = s.size();
+        string temp;
+        for(int i=len;i>0;i--)
+        {
+            temp.assign(s,0,i);
+            if(wether_is_palindrome(temp))
+            {
+                return temp;
+            }
+        }
+        return s.substr(0,1);
+    }
 
     string longestPalindrome(string s) 
     {
         int len = s.size();
-        string temp;//记录最大字符串
+        string temp_palind;//记录子串的最大回文字符串
         string substring = "";
 
         for(int i=0;i<len;i++)
         {
-            for(int j=len-1;j>=i;j--) //判断子序列是否是回文字符串
+            temp_palind.assign(longest_palind_including_first(s.substr(i,len-i+1)));
+            if(temp_palind.size()>=substring.size())
             {
-                temp.assign(s,i,j-i+1);
-                if(wether_is_palindrome(temp))
-                {
-                    if (temp.size()>=substring.size())
-                    {
-                        substring = temp;
-                    }
-                    continue;
-                }
-                else
-                {
-                    break;
-                }
+                substring = temp_palind;
             }
         }
+            
         return substring;
 
     }
