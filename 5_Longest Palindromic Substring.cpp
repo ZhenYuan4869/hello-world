@@ -14,6 +14,7 @@ using namespace std;
 class Solution {
 public:
     string longestPalindrome(string s) {
+        int len = s.size();
 
     }
 };
