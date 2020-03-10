@@ -13,13 +13,46 @@
 using namespace std;
 class Solution {
 public:
+
+    int wether_is_palindrome(string s)
+    {
+        int len = s.size();
+        for(int i=0;i<=len/2;i++)
+        {
+            if(s[i]!=s[len-i-1])
+            {
+                return 0;
+            }
+        }
+        return 1;
+    }
+
     string longestPalindrome(string s) 
     {
         int len = s.size();
-        for(int i = 0;i<len;i++)
+        string temp;//记录最大字符串
+        string substring = "";
+
+        for(int i=0;i<len;i++)
         {
-            for(int j = 0;j<)
+            for(int j=len-1;j>=i;j--) //判断子序列是否是回文字符串
+            {
+                temp.assign(s,i,j-i+1);
+                if(wether_is_palindrome(temp))
+                {
+                    if (temp.size()>=substring.size())
+                    {
+                        substring = temp;
+                    }
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
+        return substring;
 
     }
 };
