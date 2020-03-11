@@ -8,8 +8,9 @@
 
 // 输入: "cbbd"
 // 输出: "bb"
-#include<string>
+#include<string.h>
 #include<iostream>
+#include<stdio.h>
 using namespace std;
 class Solution {
 public:
@@ -59,6 +60,28 @@ public:
         return substring;
 
     }
+};
+
+
+class Solution_effective {
+public:
+    string longestPalindrome(string s)
+    {
+        int len = s.size();
+        string temp_palind;//记录子串的最大回文字符串
+        string revtemp_palind;
+        string substring = "";
+
+        for(int i=0;i<len;i++)
+        {
+            for(int j=i;j<=len-1;j++)
+            {
+                temp_palind = s.substr(i,j-i+1);
+                revtemp_palind = strrev(temp_palind);
+            }
+        }
+    }
+
 };
 
 int main(){
