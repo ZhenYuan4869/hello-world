@@ -65,6 +65,16 @@ public:
 
 class Solution_effective {
 public:
+    string reserve (string s)
+    {
+        int len = s.size();
+        string ans = "";
+        for(int i = 0;i<len;i++)
+        {
+            ans += s[i];
+        }
+        return ans;
+    }
     string longestPalindrome(string s)
     {
         int len = s.size();
@@ -77,7 +87,8 @@ public:
             for(int j=i;j<=len-1;j++)
             {
                 temp_palind = s.substr(i,j-i+1);
-                revtemp_palind = strrev(temp_palind);
+                revtemp_palind = reserve(temp_palind);
+                
             }
         }
     }
