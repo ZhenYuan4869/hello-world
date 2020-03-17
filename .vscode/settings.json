@@ -3,5 +3,7 @@
     "files.associations": {
         "string": "cpp",
         "iosfwd": "cpp"
-    }
+    },
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true
 }
