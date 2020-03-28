@@ -41,7 +41,7 @@ int calculate(int days, int date[],int count,int j)
             {
                 if(date[i+1]!= 0)
                 {
-                    calculate(days,date[],count,i+1);
+                    calculate(days,date,count,i+1);
                 }
             }
             
