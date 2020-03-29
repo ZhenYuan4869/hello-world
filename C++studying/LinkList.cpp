@@ -15,8 +15,8 @@ ListNode* ReverseList(ListNode* pHead)
     ListNode *next=pHead->next;
     while(p)
     {
-        p->next=pre;
-        pre=p;
+        p->next=pre;   //真正换位这一行就够了
+        pre=p;         //这三行都是在变换迭代条件
         p=next;
         if(next)
             next=next->next;
