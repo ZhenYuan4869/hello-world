@@ -9,26 +9,33 @@ using namespace std;
 int get_count(const string str1, const string str2)
 {
     // 形参pcount的作用是为了计算次数
-    while(str1.find(str2) != );
+    if (str1 == "")
+    {
+        return 0;
+    }
+    string rest_string = str1;
+    int pos = 0;
+    int count = 0;
+    while(rest_string.find(str2) != string::npos)
+    {
+        pos = rest_string.find(str2);
+        count += 1;
+        rest_string.assign(rest_string,(pos+(str2.size())));
+    };
 
-    return 0;
+    return count;
 } 
 
 int main(void)
 {
-    string str1 = "haabchnjabchnnjabchuioiabc";
-    string str2 = "abc";
+    string str1 = "";
+    string str2 = "aaa";
 
     int count = 0;
-    int ret = 0;
 
-    ret = get_count(str1, str2, &count);
+    count = get_count(str1, str2);
 
-    // 异常处理
-    if (ret != 0){
-        printf("get_count func err:%d\n", ret);
-        return 0;
-    }
+    
     printf("count=%d\n", count);
 
     return 0;
