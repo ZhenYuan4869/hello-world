@@ -26,6 +26,11 @@ int get_count(const string str1, const string str2)
     return count;
 } 
 
+string get_substring(const string str1, const string str2)
+{
+    
+}
+
 int main(void)
 {
     string str1 = "";
