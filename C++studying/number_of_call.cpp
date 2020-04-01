@@ -25,10 +25,89 @@ using namespace std;
 /*请完成下面这个函数，实现题目要求的功能
 当然，你也可以不按照下面这个模板来作答，完全按照自己的想法来 ^-^ 
 ******************************开始写代码******************************/
-int calcMinStaff(int time_table[][2],int len) {
+int calcMinStaff(int time_input[],int time_output[],int len) {
     int current_time = 0;
     int count = 0;
-    
+    int max_count = 0;
+    int temp;
+    int time_mix_table[2*len][2];
+
+    for (int p = 1; p<len; p++)
+    {
+        for (int i = 0; i<len - p; i++)
+        {
+            if (time_input[i]>time_input[i + 1])
+            {
+                temp = time_input[i];
+                time_input[i] = time_input[i + 1];
+                time_input[i + 1] = temp;
+            }
+        }
+    }
+
+    for (int p = 1; p<len; p++)
+    {
+        for (int i = 0; i<len - p; i++)
+        {
+            if (time_output[i]>time_output[i + 1])
+            {
+                temp = time_output[i];
+                time_output[i] = time_output[i + 1];
+                time_output[i + 1] = temp;
+            }
+        }
+    }
+
+    temp = 0;
+    int k = 0;
+    for(int p = 0; p<len; )
+    {
+        if(k==len)
+        {
+            time_mix_table[temp][0]=time_output[p];
+            time_mix_table[temp][1]=-1;
+            temp++;
+            p++;
+            continue;
+        }
+        for (; k<len;)
+        {
+            if(time_input[k]<time_output[p])
+            {
+                time_mix_table[temp][0]=time_input[k];
+                time_mix_table[temp][1]=1;
+                temp++;
+                k++;
+            }
+            else
+            {
+                time_mix_table[temp][0]=time_output[p];
+                time_mix_table[temp][1]=-1;
+                temp++;
+                p++;
+                break;
+            }
+        }
+        
+    }
+ 
+    count = 0;
+    for(int i=0;i<2*len;i++)
+    {
+        if(time_mix_table[i][1]==1)
+        {
+            count++;
+        }
+        else if (time_mix_table[i][1]==-1)
+        {
+            count--;
+        }
+        if(count>max_count)
+        {
+            max_count = count;
+        }
+    }
+    return max_count;
 
 }
 /******************************结束写代码******************************/
@@ -45,18 +124,19 @@ int main() {
         return 0;
     }
     
-    int time_table[res][2];
+    int time_input[res];
+    int time_output[res];
     string input_timetable;
     int common_position = 0;
     for(int i = 0;i<len;i++)
     {
         cin>>input_timetable;
         common_position = input_timetable.find(',');
-        time_table[i][0]= std::stoi(input_timetable.substr(0,common_position));
-        time_table[i][1] = std::stoi(input_timetable.substr(common_position+1,2));
+        time_input[i]= std::stoi(input_timetable.substr(0,common_position));
+        time_output[i] = std::stoi(input_timetable.substr(common_position+1,2));
     }
 
-    res = calcMinStaff(time_table,len);
+    res = calcMinStaff(time_input,time_output,len);
     cout << res << endl;
     
     return 0;
