@@ -124,8 +124,8 @@ int main() {
         return 0;
     }
     
-    int time_input[res];
-    int time_output[res];
+    int time_input[len];
+    int time_output[len];
     string input_timetable;
     int common_position = 0;
     for(int i = 0;i<len;i++)
