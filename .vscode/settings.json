@@ -2,7 +2,11 @@
     "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6",
     "files.associations": {
         "string": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp",
+        "ios": "cpp"
     },
     "code-runner.runInTerminal": true,
     "code-runner.saveFileBeforeRun": true
