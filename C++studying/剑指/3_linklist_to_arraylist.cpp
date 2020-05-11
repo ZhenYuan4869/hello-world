@@ -14,6 +14,22 @@
 class Solution {
 public:
     vector<int> printListFromTailToHead(ListNode* head) {
-        
+        ListNode* curr;
+        curr=head;
+        int length = 0;
+        stack<int> temp_store;
+        vector<int> ans;
+        while(curr!=nullptr)
+        {
+            temp_store.push(curr->val);
+            curr=curr->next;
+            length++;
+        }
+        for(int i=0;i<length;i++)
+        {
+            ans.push_back(temp_store.top());
+            temp_store.pop();
+        }
+        return ans;
     }
 };
