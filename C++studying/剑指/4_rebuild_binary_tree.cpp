@@ -15,6 +15,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 struct TreeNode {
     int val;
@@ -26,5 +27,9 @@ class Solution {
 public:
     TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
         int length = pre.size();
+        vector<int>::iterator root_position;
+        TreeNode* head = new TreeNode(pre[0]);//调用结构的时候要new非配空间
+        root_position = find(vin.begin(),vin.end(),pre[0]);
+        
     }
 };
