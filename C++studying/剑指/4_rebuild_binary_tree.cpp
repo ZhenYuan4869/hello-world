@@ -27,9 +27,23 @@ class Solution {
 public:
     TreeNode* reConstructBinaryTree(vector<int> pre,vector<int> vin) {
         int length = pre.size();
-        vector<int>::iterator root_position;
+        int root_position;
         TreeNode* head = new TreeNode(pre[0]);//调用结构的时候要new非配空间
-        root_position = find(vin.begin(),vin.end(),pre[0]);
-        
+        for(int i=0;i<length;i++)
+        {
+            if(pre[0]==vin[i])
+            {
+                root_position = i;
+                break;
+            }
+        }
+        vector<int> left_front.assign((pre.begin()+1,pre.begin()+1+root_position+1));//左子树的前序，其余同理
+        vector<int> left_in (vin.begin(),vin.begin()+root_position+1);
+        vector<int> right_front (pre.begin()+1+root_position+1,pre.end());//左子树的前序，其余同理
+        vector<int> right_in (vin.begin()+root_position+1+1,vin.end());
+        head->left = reConstructBinaryTree(left_front,left_in);
+        head->left = reConstructBinaryTree(right_front,right_in);
+
+        return head;
     }
 };
