@@ -9,5 +9,17 @@
         "ios": "cpp"
     },
     "code-runner.runInTerminal": true,
-    "code-runner.saveFileBeforeRun": true
+    "code-runner.saveFileBeforeRun": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.dependency.packagePresentation": "flat",
+    "java.dependency.syncWithFolderExplorer": true,
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "java/mysql-connector-java-8.0.20/**/*.jar"
+    ]
 }
