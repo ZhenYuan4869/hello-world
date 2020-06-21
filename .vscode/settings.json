@@ -18,8 +18,15 @@
     },
     "java.dependency.packagePresentation": "flat",
     "java.dependency.syncWithFolderExplorer": true,
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "java/mysql-connector-java-8.0.20/**/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "java/mysql-connector-java-8.0.20/**/*.jar",
+            "java/JavaConnectMysql/JavaConnectmysql/lib/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20.jar"
+        ],
+        "exclude": [
+            "java/mysql-connector-java-8.0.20/mysql-connector-java-8.0.20.jar"
+        ]
+    },
+    "maven.view": "hierarchical"
 }
