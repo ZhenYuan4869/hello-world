@@ -85,6 +85,8 @@ class Server_send implements Runnable {
             //可以一直发送信息
             while (true) {
                 System.out.println("请输入要发送的内容：");
+                String string = scanner.nextLine();
+            //可以考虑用json数据传递内容
             }
             oos.writeObject(obj);
             
