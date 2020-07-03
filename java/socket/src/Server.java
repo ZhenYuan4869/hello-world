@@ -3,8 +3,10 @@ author: Yuan Zhen
 2020/07/03
 */
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 //socket服务器类
 public class Server {
@@ -26,7 +28,7 @@ public class Server {
 }
 
 /**
- * 监听客户发来的信息的类，监听类
+ * 监听客户发来的信息的类，监听类，数据接收
  * 需要重写run方法
  */
 
@@ -34,7 +36,7 @@ public class Server {
 class Server_listen implements Runnable {
     private Socket socket;
 
-    Server_listen(Socket socket){ //由外面传进来socket
+    Server_listen(Socket socket){ //在构造函数里面导入外面传进来socket
         this.socket = socket; //将外面传进来的socket赋值进成员变量
     }
 
@@ -42,6 +44,7 @@ class Server_listen implements Runnable {
     public void run() {
         // TODO Auto-generated method stub
         try {
+            //对象输入流ois
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             //通过ois不断读取客户传过来的信息
             while (true) {
@@ -62,11 +65,42 @@ class Server_listen implements Runnable {
 }
 
 
-//
 /**
- * 发送数据给客户的类
+ * 发送数据给客户的类,数据输出
  */
 class Server_send implements Runnable {
+    private Socket socket;
+
+    Server_send(Socket socket){ //在构造函数里面导入外面传进来socket
+        this.socket = socket; //将外面传进来的socket赋值进成员变量
+    }
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        try {
+            //对象输出流oos
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            //键盘输入数据
+            Scanner scanner = new Scanner(System.in);
+            //可以一直发送信息
+            while (true) {
+                System.out.println("请输入要发送的内容：");
+            }
+            oos.writeObject(obj);
+            
+        } catch (Exception e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }finally{
+            //故障或者bye就断开，不用一直连接socket
+            try {
+                socket.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+    }
 
     
 }
