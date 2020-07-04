@@ -20,7 +20,9 @@ public class MyClient {
             //127.0.0.1
             Socket s = new Socket("localhost",SERVER_PORT);
         ) {
-            System.out.println("客户端连接到："+s.getRemoteSocketAddress());
+            // System.out.println("客户端连接到："+s.getRemoteSocketAddress());
+            MyChat myChat = new MyChat(s, "服务器端", null);
+            myChat.chatting();
         } catch (UnknownHostException e) {
             //TODO: handle exception
             e.printStackTrace();
