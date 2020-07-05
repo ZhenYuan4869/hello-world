@@ -8,16 +8,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-import tcp.MsgField;
-import tcp.MsgPiece;
-import tcp.MsgField.FillSide;
 
 public class MyClient {
     private static Socket socket;
     public static boolean connection_state = false;
 
     public static void main(String[] args){
-        while (!connection_state) {
+        while (!connection_state) {     //如果先启动客户端则尝试重新连接
             connect();
             try {
                 Thread.sleep(3000);
@@ -92,10 +89,17 @@ class Client_send implements Runnable{
             while (true){
                 System.out.print("请输入你要发送的信息：");
                 String string = scanner.nextLine();
-                JSONObject object = new JSONObject();
-                object.put("type","chat");
-                object.put("msg",string);
-                oos.writeObject(object);
+                //定长报文组装和封装组包
+                TestHead head = new TestHead();
+                head.setTextLength(string.length());
+                TestBody body = new TestBody();
+                body.setContent(string);
+
+                TestPackage packagee= new TestPackage();
+                packagee.setT1(head);
+                packagee.setT2(body);
+
+                oos.writeObject(packagee);
                 oos.flush();
             }
         }catch (Exception e){
@@ -111,6 +115,7 @@ class Client_send implements Runnable{
     }
 }
 
+//维持长连接需要客户端不定时发送心跳包
 class Client_heart implements Runnable{
     private Socket socket;
     private ObjectOutputStream oos;
@@ -126,10 +131,15 @@ class Client_heart implements Runnable{
             System.out.println("心跳包线程已启动...");
             while (true){
                 Thread.sleep(5000);
-                JSONObject object = new JSONObject();
-                object.put("type","heart");
-                object.put("msg","心跳包");
-                oos.writeObject(object);
+                //心跳包也是定长报文形式
+                TestHead head = new TestHead();
+                TestBody body = new TestBody();
+                head.setTextLength(3);
+                body.setContent("心跳包");
+                TestPackage packagee= new TestPackage();
+                packagee.setT1(head);
+                packagee.setT2(body);
+                oos.writeObject(packagee);
                 oos.flush();
             }
         }catch (Exception e){

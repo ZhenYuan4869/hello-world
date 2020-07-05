@@ -1,14 +1,2 @@
-## Getting Started
-
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
-
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-## Dependency Management
-
-The `JAVA DEPENDENCIES` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-pack/blob/master/release-notes/v0.9.0.md#work-with-jar-files-directly).
+java实现socket通信 可以进行简单的双人聊天，服务器和客户端之间互发消息 服务器支持多个客户端同时连入，服务器为每个客户端创建独立的线程处理socket请求 心跳包机制保证socket长连接不掉线，每5秒发送一次心跳包 重新连接机制，在掉线发生时，每3秒尝试一次重新连接。
+同时报文格式导入了json格式，分别设置字段length和msg字段，由于需要定长报文我们预设长度为10，如果超过10则对输入的字符串进行截取，如果低于10则在后面用空格补齐。

@@ -2,7 +2,12 @@ package tcp;
 
 import tcp.MsgPackage;
 
-public class TestPackage extends MsgPackage {
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class TestPackage extends MsgPackage implements Serializable{
 
     public TestPackage() {
         super("t1", "t2");
@@ -28,4 +33,15 @@ public class TestPackage extends MsgPackage {
         this.t2 = t2;
     }
 
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        //System.out.println("Serializable writeObject");
+        oos.writeObject(t1);
+        oos.writeObject(t2);
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        //System.out.println("Serializable readObject");
+        t1 = (TestHead) ois.readObject();
+        t2 = (TestBody) ois.readObject();
+    }
 }
