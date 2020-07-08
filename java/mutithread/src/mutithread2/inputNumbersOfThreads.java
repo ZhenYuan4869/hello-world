@@ -21,6 +21,9 @@ public class inputNumbersOfThreads {
             exec.execute(new myThread(i+1));
         }
         exec.shutdown();
+        //shutdown()可以防止新任务被提交给Executor
+        // 当前线程（这个例子里面是指的驱动main()的线程将继续运行在shutdown()之前提交的所有任务
+        // 并在完成所有任务后尽快退出。
     }
 }
 
