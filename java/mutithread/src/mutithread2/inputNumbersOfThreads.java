@@ -6,28 +6,27 @@
 package mutithread2;
 
 import java.util.Scanner;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class inputNumbersOfThreads {
-    public static void main(String[] args) {
+public class inputNumbersOfThreads{
+    public static void main(String[] args){
         System.out.println("这是第二种方法。");
         System.out.println("请输入需要建立的线程数：");
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
-        ExecutorService exec = Executors.newCachedThreadPool();
-        for(int i=0;i<number;i++){
-            exec.execute(new myThread(i+1));
+        for(int i=0;i<number;i++) {
+            new Thread(new myThread(i+1)).start();
+            try {
+                Thread.sleep(50);
+                //使用sleep来控制一个线程完全运行之后再开启下一个，可以达到按顺序开启线程的目的。
+                //但是因为手动设置延迟所以运行时间较长
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        exec.shutdown();
-        //shutdown()可以防止新任务被提交给Executor
-        // 当前线程（这个例子里面是指的驱动main()的线程将继续运行在shutdown()之前提交的所有任务
-        // 并在完成所有任务后尽快退出。
     }
 }
 
-class myThread implements Runnable {
+class myThread extends Thread implements Runnable {
     private int number;   //线程编号
 
     myThread(int i) {
@@ -35,7 +34,7 @@ class myThread implements Runnable {
     }
 
     @Override
-    public void run() {
+    public void run(){
         if (this.number % 3 == 0) {
             System.out.println("当前线程为：" + this.number + "，输出为：" + (this.number % 3 + 3) + "。");
         } else {
