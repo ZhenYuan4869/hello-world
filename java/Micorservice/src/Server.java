@@ -69,25 +69,27 @@ class Server_listen implements Runnable{
                         oos.flush();
                     }
                 } else if (receive.get("operation").equals(Operation.UPDATE)) {
-                    if (publisher.get(receive.get("key")).equals(this.socket)) {
-                        valueMap.put((String) receive.get("key"), (String) receive.get("key-value"));
-                        Set<ObjectOutputStream> sub = subscriber.get(receive.get("key"));
-                        if (sub != null) {
-                            for (ObjectOutputStream keyOos : sub) {
-                                JSONObject object = new JSONObject();
-                                object.put(receive.get("key"), "更新为" + receive.get("key-value"));
-                                keyOos.writeObject(object);
-                                keyOos.flush();
+                    if(publisher.get(receive.get("key"))!= null) {
+                        if (publisher.get(receive.get("key")).equals(this.socket)) {
+                            valueMap.put((String) receive.get("key"), (String) receive.get("key-value"));
+                            Set<ObjectOutputStream> sub = subscriber.get(receive.get("key"));
+                            if (sub != null) {
+                                for (ObjectOutputStream keyOos : sub) {
+                                    JSONObject object = new JSONObject();
+                                    object.put(receive.get("key"), "更新为" + receive.get("key-value"));
+                                    keyOos.writeObject(object);
+                                    keyOos.flush();
+                                }
                             }
-                        }
 
-                    } else {
-                        System.out.println(publisher.get(receive.get("key")));
-                        System.out.println(this.socket);
-                        JSONObject object = new JSONObject();
-                        object.put("message", "不是对应key的publisher无法更改对应内容。");
-                        oos.writeObject(object);
-                        oos.flush();
+                        } else {
+                            System.out.println(publisher.get(receive.get("key")));
+                            System.out.println(this.socket);
+                            JSONObject object = new JSONObject();
+                            object.put("message", "不是对应key的publisher无法更改对应内容。");
+                            oos.writeObject(object);
+                            oos.flush();
+                        }
                     }
                 } else if (receive.get("operation").equals(Operation.SUBSCRIBE)) {
                     Set<ObjectOutputStream> keySubscriber = subscriber.getOrDefault(receive.get("key"), new HashSet<>());
