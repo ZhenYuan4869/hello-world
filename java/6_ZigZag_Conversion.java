@@ -21,7 +21,8 @@ class Solution {
 //从左到右迭代 ss，将每个字符添加到合适的行。可以使用当前行和当前方向这两个变量对合适的行进行跟踪。
 //只有当我们向上移动到最上面的行或向下移动到最下面的行时，当前方向才会发生改变。
 //这里我考虑用numRows个String来记录数据
+        String[] result;
         for (int i = 0; i < Math.min(output, s.length()); i++){
-            
+
         }
     }
