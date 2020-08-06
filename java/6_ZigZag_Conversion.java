@@ -25,7 +25,7 @@ class Solution {
         for(int i=0;i<numRows;i++){
             result.add("");
         }
-
+        int flag = 0;//0表示从上到下，1表示从下到上
         for (int i = 0; i < s.length(); i++){
             
         }
