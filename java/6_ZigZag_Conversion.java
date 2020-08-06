@@ -25,8 +25,22 @@ class Solution {
         for(int i=0;i<numRows;i++){
             result.add("");
         }
-        int flag = 0;//0表示从上到下，1表示从下到上
+        int flag = 0;//分为numRows到2numRows两个闸门
         for (int i = 0; i < s.length(); i++){
-            
+            if (flag<numRows) {
+                result.set(flag,result.get(flag)+s.charAt(i));
+            }else if (flag>=numRows) {
+                result.set(2*numRows-flag-2,result.get(2*numRows-flag-2)+s.charAt(i));
+            }
+            flag++;
+            if(flag==2*numRows-2){
+                flag=0;
+            }
         }
+        String returnValue = "";
+        for(int i = 0;i<numRows;i++){
+            returnValue+=result.get(i);
+        }
+        return returnValue;
     }
+}
