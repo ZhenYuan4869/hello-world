@@ -52,11 +52,11 @@ class Solution {
         }
 //中序遍历不行，有漏洞
         if(subTreeNode.left!=null&&subTreeNode.right!=null){
-            subTreeStrings = SubTree(subTreeNode.left)+subTreeNode.val+SubTree(subTreeNode.right);
+            subTreeStrings = subTreeNode.val+SubTree(subTreeNode.left)+SubTree(subTreeNode.right);
         }else if (subTreeNode.left==null&&subTreeNode.right!=null) {
-            subTreeStrings = " "+subTreeNode.val+SubTree(subTreeNode.right);
+            subTreeStrings = subTreeNode.val+" "+SubTree(subTreeNode.right);
         }else if (subTreeNode.left!=null&&subTreeNode.right==null){
-            subTreeStrings = SubTree(subTreeNode.left)+subTreeNode.val+" ";
+            subTreeStrings = subTreeNode.val+SubTree(subTreeNode.left)+" ";
         }else if (subTreeNode.left==null&&subTreeNode.right==null){
             subTreeStrings = String.valueOf(subTreeNode.val);
         }
