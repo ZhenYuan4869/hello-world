@@ -1,8 +1,5 @@
 package java;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode() {} TreeNode(int val) { this.val = val; }
@@ -39,9 +36,10 @@ class TreeNode {
     TreeNode() {}
     TreeNode(int val) { this.val = val; }
     TreeNode(int val, TreeNode left, TreeNode right) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
 }
 
 class Solution {
@@ -49,6 +47,10 @@ class Solution {
     public String SubTree(TreeNode subTreeNode){
         String subTreeStrings = "";
 
+        if(subTreeNode==null){
+            return " ";
+        }
+//中序遍历不行，有漏洞
         if(subTreeNode.left!=null&&subTreeNode.right!=null){
             subTreeStrings = SubTree(subTreeNode.left)+subTreeNode.val+SubTree(subTreeNode.right);
         }else if (subTreeNode.left==null&&subTreeNode.right!=null) {
