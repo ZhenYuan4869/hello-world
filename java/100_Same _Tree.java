@@ -50,7 +50,7 @@ class Solution {
         if(subTreeNode==null){
             return " ";
         }
-//中序遍历不行，有漏洞
+//题目硕士前序遍历，那就用前序遍历
         if(subTreeNode.left!=null&&subTreeNode.right!=null){
             subTreeStrings = subTreeNode.val+SubTree(subTreeNode.left)+SubTree(subTreeNode.right);
         }else if (subTreeNode.left==null&&subTreeNode.right!=null) {
