@@ -1,3 +1,5 @@
+
+
 /**
  * 给你一个字符串s和一个字符规律p，请你来实现一个支持 '.'和'*'的正则表达式匹配。
  *
@@ -37,16 +39,20 @@
  * 保证每次出现字符* 时，前面都匹配到有效的字符
  */
 class Solution {
-    public boolean isMatch(String s, String p) {
-        for(int i=0;i<;)
+    public static boolean isMatch(String s, String p) {
+        boolean result = true;
+        if(p.isEmpty()&&s.isEmpty()){
+            return result;
+        } else if(p.isEmpty()){
+            return false;
+        }
+        for(int i=0;i<p.length();i++){
+            p.charAt(i)
+        }
     }
 
     public static void main(String[] var0) {
-        System.out.println("Hello World!");
-        System.out.println(0.8333333333333334D);
-        byte var1 = 3;
-        int var2 = 2 * var1;
-        System.out.println(var2);
+        System.out.println(isMatch("",""));
     }
 }
 
