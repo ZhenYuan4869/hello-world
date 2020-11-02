@@ -47,7 +47,9 @@ class Solution {
             return false;
         }
         for(int i=0;i<p.length();i++){
-            p.charAt(i)
+            if(p.charAt(i)!='*'){
+
+            }
         }
     }
 
