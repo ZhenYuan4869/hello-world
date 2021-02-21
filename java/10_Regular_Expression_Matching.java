@@ -46,11 +46,8 @@ class Solution {
         } else if(p.isEmpty()){
             return false;
         }
-        for(int i=0;i<p.length();i++){
-            if(p.charAt(i)!='*'){
-
-            }
-        }
+        //todo
+        return result;
     }
 
     public static void main(String[] var0) {
